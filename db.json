@@ -1,0 +1,28 @@
+{
+  "facturas": [
+    {
+      "id": "ecc414c7-1da4-454e-a1d6-a44a6edee7fd",
+      "cliente": "jose",
+      "importe": 0,
+      "fecha": "12-12-12"
+    },
+    {
+      "id": "ce80095c-5031-485f-9aeb-887094a565d0",
+      "cliente": "pablo",
+      "importe": "10",
+      "fecha": "14-15-2021"
+    },
+    {
+      "id": "f7635d70-d7e0-448b-915a-7379fb782e24",
+      "cliente": "alex",
+      "importe": "12",
+      "fecha": "12-12-12"
+    },
+    {
+      "id": "f5033a3b-469e-4049-b6ff-db6f677300be",
+      "cliente": "pablo",
+      "importe": "1000",
+      "fecha": "21-10-1999"
+    }
+  ]
+}
