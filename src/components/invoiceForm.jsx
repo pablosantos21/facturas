@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import {Redirect} from 'react-router-dom'
+import { useParams } from 'react-router'
 import { v4 as uuid } from 'uuid';
 
 const InvoiceForm = () => {
 
-    
+    let {idEdit} = useParams();
+    console.log(idEdit)
     let FACTURA ={
-        id:uuid(),
+        id:idEdit?idEdit:uuid(),
         cliente:"",
         importe:0,
         fecha:""
@@ -15,15 +17,28 @@ const InvoiceForm = () => {
     const [factura,setFactura] = useState(FACTURA)
 
     
+
     const submit = e => {
         e.preventDefault()
-        fetch('http://localhost:3000/facturas', {
-          method: 'POST',
-          body: JSON.stringify(factura ),
-          headers: { 'Content-Type': 'application/json' },
-        })
-          .then(res =>console.log(res))
-          setRedirect(true)
+        if(idEdit){
+            fetch(`http://localhost:8000/facturas/${idEdit}`, {
+                method:'PUT',
+                body: JSON.stringify(factura ),
+                headers: { 'Content-Type': 'application/json' },
+              })
+                .then(res =>console.log(res))
+        }else{
+            fetch('http://localhost:8000/facturas/', {
+                method:'POST',
+                body: JSON.stringify(factura ),
+                headers: { 'Content-Type': 'application/json' },
+              })
+                .then(res =>console.log(res))
+        }
+        setRedirect(true)
+        
+        
+        //   setRedirect(true)
       }
     
 
@@ -34,6 +49,7 @@ const InvoiceForm = () => {
     return (
         <div className="invoice">
             {redirect && <Redirect to="/"/>}
+            <h1>{idEdit?`Editando ${idEdit}`:"Creando Factura"}</h1>
             <form onSubmit={submit}>
                 <input   type="text"
                         name="factura[cliente]"
@@ -53,11 +69,11 @@ const InvoiceForm = () => {
                         onChange={e => setFactura({ ...factura, fecha: e.target.value })}
                         placeholder="Fecha"
                         ></input><br/>
-                <button className="ui  button" type="submit">Guardar</button>
+                <button className="ui  button" type="submit">{idEdit?"Editar":"Guardar"}</button>
                 <button className="ui negative button" onClick={cancelar}>Cancelar</button>
             </form>
 
-            
+            {factura.id}
         </div>
     )
 }

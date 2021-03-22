@@ -3,7 +3,13 @@ tr{
   text-align: center;
 }
 .invoice{
-  width: 50%;
+  width: 60%;
   margin: auto;
   text-align: center;
+}
+input{
+  margin:1%
+}
+label{
+  font-size:  1.5em; 
 }

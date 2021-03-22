@@ -4,22 +4,26 @@ import '../App.css'
 
 
 const InvoiceTable = () => {
-  const [facturas,setFacturas] = useState([]);
-
-
   useEffect(()=>{
     loadFacturas()}
     // eslint-disable-next-line
   ,[]);
+
+  const [facturas,setFacturas] = useState([]);
+
+
   
+  
+
   const loadFacturas = async ()=> {
-    const response = await fetch("http://localhost:3000/facturas");
+    const response = await fetch("http://localhost:8000/facturas");
     const data = await response.json();
     setFacturas(data);
     // console.log(data);
   }
+
   const borrarFactura = async (id)=> {
-    fetch('http://localhost:3000/facturas/' + id, {
+    fetch('http://localhost:8000/facturas/' + id, {
      method: 'DELETE',
     })
     .then(res => res.text()) // or res.json()
@@ -33,8 +37,6 @@ const InvoiceTable = () => {
       
       <table table className="ui celled table">
         <tbody>
-
-
       <tr>
         <th>
           Cliente
@@ -61,7 +63,7 @@ const InvoiceTable = () => {
       }
       </tbody>
       </table>
-      <button className="ui  button" ><Link to={`/new`}>Nueva factura</Link></button>
+      <button className="ui  button" ><Link to='/new'>Nueva factura</Link></button>
     </div>
   )
   
@@ -69,4 +71,3 @@ const InvoiceTable = () => {
 }
 
 export default InvoiceTable;
-

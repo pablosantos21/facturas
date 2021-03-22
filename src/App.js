@@ -18,6 +18,9 @@ function App() {
           <Route exact path="/:id">
             <InvoiceDetail></InvoiceDetail>
           </Route>
+          <Route exact path="/edit/:idEdit">
+            <InvoiceForm></InvoiceForm>
+          </Route>
         </Switch>
       </Router>
     </div>
